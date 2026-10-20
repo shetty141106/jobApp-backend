@@ -3,6 +3,7 @@ package com.example.jobApp.controller;
 
 import com.example.jobApp.model.JobPost;
 import com.example.jobApp.service.JobService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class JobAppController {
     JobService jobService;
 
     @PostMapping("JobPost")
-    public String addPost(@RequestBody JobPost jobPost){
+    public String addPost(@Valid @RequestBody JobPost jobPost){
         jobService.addJob(jobPost);
         return "job added succesfully";
     }
@@ -45,7 +46,7 @@ public class JobAppController {
         return "JobPost deleted Succesfully";
     }
 
-    @PostMapping("load")
+    @GetMapping("load")
     public void loadJobs(){
         jobService.loadJobs();
     }
