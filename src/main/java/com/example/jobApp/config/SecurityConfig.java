@@ -15,18 +15,27 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
+
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http)
+            throws Exception {
 
         http
-                .csrf(customizer->customizer.disable())
-                .authorizeHttpRequests(request-> request.anyRequest().authenticated())
+                .cors(Customizer.withDefaults())
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(request -> request
+                        .requestMatchers(
+                                org.springframework.http.HttpMethod.OPTIONS, "/**"
+                        ).permitAll()
+                        .anyRequest().authenticated()
+                )
                 .httpBasic(Customizer.withDefaults())
-                .sessionManagement(session->session
+                .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return http.build();
     }
+
 
     @Autowired
     UserDetailsService userDetailsService;
