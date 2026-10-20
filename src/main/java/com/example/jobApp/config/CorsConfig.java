@@ -18,7 +18,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
                             .allowedOrigins(
                                     "http://localhost:5173",
                                     "http://localhost:5174",
-                                    "https://job-app-frontend-87xjupx8i-mokshith14.vercel.app"
+                                    "https://job-app-frontend-87xjupx8i-mokshith14.vercel.app",
+                                    "https://job-app-frontend-nd306z10t-mokshith14.vercel.app"
                             )
                             .allowedMethods(
                                     "GET",
