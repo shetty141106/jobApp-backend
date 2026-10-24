@@ -11,6 +11,4 @@ import java.util.List;
 public interface JobRepo extends JpaRepository<JobPost,Integer> {
 
     public List<JobPost> findBypostDescContaining(String name);
-
-
 }
